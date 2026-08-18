@@ -7,6 +7,7 @@
 <title>School Management System</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +15,11 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f2f4f7;
+    background: #f3f6fa;
     color: #222;
 }
+
+/* HEADER */
 
 header {
     background: #174ea6;
@@ -29,11 +32,60 @@ header h1 {
     margin: 0;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 15px;
+header p {
+    margin-bottom: 0;
 }
+
+/* NAVIGATION */
+
+nav {
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav button {
+    flex: 1;
+    min-width: 120px;
+    border: none;
+    padding: 12px;
+    background: #e8eef8;
+    color: #174ea6;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav button:hover {
+    background: #174ea6;
+    color: white;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* SECTIONS */
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* CARDS */
 
 .card {
     background: white;
@@ -43,53 +95,15 @@ header h1 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-h2 {
+.card h2 {
     color: #174ea6;
 }
 
-input, select, button {
-    width: 100%;
-    padding: 12px;
-    margin: 6px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
-
-button {
-    background: #174ea6;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0d3b7d;
-}
-
-.student-info {
-    display: none;
-    background: #eef5ff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-.row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-@media(max-width: 600px) {
-    .row {
-        grid-template-columns: 1fr;
-    }
-}
+/* DASHBOARD */
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
 
@@ -97,262 +111,1572 @@ button:hover {
     background: #174ea6;
     color: white;
     padding: 20px;
+    border-radius: 10px;
     text-align: center;
-    border-radius: 8px;
 }
 
 .stat h3 {
+    font-size: 30px;
     margin: 0;
-    font-size: 28px;
 }
 
-.stat p {
-    margin-bottom: 0;
+/* FORMS */
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 8px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button.action {
+    background: #174ea6;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+button.action:hover {
+    background: #0d3b7d;
+}
+
+/* TABLE */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #174ea6;
+    color: white;
+}
+
+/* SEARCH RESULT */
+
+.result {
+    background: #eef5ff;
+    border-left: 5px solid #174ea6;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+/* MESSAGE */
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    nav button {
+        min-width: 45%;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>🏫 School Management System</h1>
-    <p>Admissions • Students • Parents • Fees • Performance</p>
+
+<h1>🏫 School Management System</h1>
+
+<p>Admissions • Parents • Fees • Performance • Reports</p>
+
 </header>
+
+
+<nav>
+
+<button onclick="showSection('dashboard')">
+🏠 Dashboard
+</button>
+
+<button onclick="showSection('admission')">
+📝 Admissions
+</button>
+
+<button onclick="showSection('students')">
+👥 Students
+</button>
+
+<button onclick="showSection('search')">
+🔎 Search
+</button>
+
+<button onclick="showSection('fees')">
+💰 Fees
+</button>
+
+<button onclick="showSection('performance')">
+📚 Performance
+</button>
+
+<button onclick="showSection('reports')">
+📊 Reports
+</button>
+
+</nav>
+
 
 <div class="container">
 
-    <!-- DASHBOARD -->
-    <div class="card">
-        <h2>📊 Dashboard</h2>
 
-        <div class="dashboard">
-            <div class="stat">
-                <h3 id="totalStudents">3</h3>
-                <p>Total Students</p>
-            </div>
+<!-- ================= DASHBOARD ================= -->
 
-            <div class="stat">
-                <h3>2</h3>
-                <p>Boys</p>
-            </div>
+<div id="dashboard" class="section active">
 
-            <div class="stat">
-                <h3>1</h3>
-                <p>Girls</p>
-            </div>
-        </div>
-    </div>
+<div class="card">
 
-    <!-- STUDENT SEARCH -->
-    <div class="card">
-        <h2>🔎 Search Student</h2>
+<h2>📊 School Dashboard</h2>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Enter Admission Number"
-        >
+<div class="dashboard">
 
-        <button onclick="searchStudent()">
-            Search Student
-        </button>
+<div class="stat">
 
-        <div id="studentInfo" class="student-info"></div>
-    </div>
+<h3 id="totalStudents">0</h3>
 
-    <!-- ADMISSION FORM -->
-    <div class="card">
-        <h2>📝 Student Admission</h2>
-
-        <div class="row">
-
-            <div>
-                <label>Admission Number</label>
-                <input type="text" id="admNo" placeholder="e.g. ADM001">
-            </div>
-
-            <div>
-                <label>Student Name</label>
-                <input type="text" id="studentName" placeholder="Student name">
-            </div>
-
-            <div>
-                <label>Class / Grade</label>
-                <select id="grade">
-                    <option value="">Select Grade</option>
-                    <option>Grade 4</option>
-                    <option>Grade 5</option>
-                    <option>Grade 6</option>
-                    <option>Grade 7</option>
-                    <option>Grade 8</option>
-                    <option>Grade 9</option>
-                </select>
-            </div>
-
-            <div>
-                <label>Gender</label>
-                <select id="gender">
-                    <option value="">Select Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                </select>
-            </div>
-
-            <div>
-                <label>Date of Birth</label>
-                <input type="date" id="dob">
-            </div>
-
-            <div>
-                <label>Birth Certificate No.</label>
-                <input type="text" id="birthCert" placeholder="Birth certificate number">
-            </div>
-
-        </div>
-
-        <button onclick="addStudent()">
-            ➕ Add Student
-        </button>
-    </div>
+<p>Total Students</p>
 
 </div>
 
+
+<div class="stat">
+
+<h3 id="totalBoys">0</h3>
+
+<p>Boys</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="totalGirls">0</h3>
+
+<p>Girls</p>
+
+</div>
+
+
+<div class="stat">
+
+<h3 id="totalFees">0</h3>
+
+<p>Fees Collected</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMISSION ================= -->
+
+<div id="admission" class="section">
+
+<div class="card">
+
+<h2>📝 Student Admission</h2>
+
+<div class="row">
+
+<div>
+
+<label>Admission Number</label>
+
+<input id="admNo" placeholder="ADM001">
+
+</div>
+
+
+<div>
+
+<label>Student Name</label>
+
+<input id="studentName" placeholder="Full name">
+
+</div>
+
+
+<div>
+
+<label>Class / Grade</label>
+
+<select id="grade">
+
+<option value="">Select Grade</option>
+
+<option>Grade 1</option>
+<option>Grade 2</option>
+<option>Grade 3</option>
+<option>Grade 4</option>
+<option>Grade 5</option>
+<option>Grade 6</option>
+<option>Grade 7</option>
+<option>Grade 8</option>
+<option>Grade 9</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Gender</label>
+
+<select id="gender">
+
+<option value="">Select Gender</option>
+
+<option>Male</option>
+
+<option>Female</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Date of Birth</label>
+
+<input type="date" id="dob">
+
+</div>
+
+
+<div>
+
+<label>Birth Certificate Number</label>
+
+<input id="birthCert" placeholder="Sample only">
+
+</div>
+
+
+<div>
+
+<label>Parent / Guardian Name</label>
+
+<input id="parentName" placeholder="Parent name">
+
+</div>
+
+
+<div>
+
+<label>Parent Phone</label>
+
+<input id="parentPhone" placeholder="07XXXXXXXX">
+
+</div>
+
+</div>
+
+<button class="action" onclick="addStudent()">
+
+➕ Register Student
+
+</button>
+
+<div id="admissionMessage"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= STUDENTS ================= -->
+
+<div id="students" class="section">
+
+<div class="card">
+
+<h2>👥 Student Records</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Adm No</th>
+
+<th>Name</th>
+
+<th>Grade</th>
+
+<th>Gender</th>
+
+<th>Parent</th>
+
+<th>Phone</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= SEARCH ================= -->
+
+<div id="search" class="section">
+
+<div class="card">
+
+<h2>🔎 Search Student</h2>
+
+<input
+id="searchInput"
+placeholder="Admission No, Name or Birth Certificate No"
+>
+
+<button class="action" onclick="searchStudent()">
+
+🔎 Search
+
+</button>
+
+<div id="searchResult"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= FEES ================= -->
+
+<div id="fees" class="section">
+
+<div class="card">
+
+<h2>💰 Fees Management</h2>
+
+<div class="row">
+
+<div>
+
+<label>Admission Number</label>
+
+<input id="feeAdmNo" placeholder="ADM001">
+
+</div>
+
+
+<div>
+
+<label>Total Fees Required</label>
+
+<input type="number" id="feeRequired" placeholder="0">
+
+</div>
+
+
+<div>
+
+<label>Amount Paid</label>
+
+<input type="number" id="feePaid" placeholder="0">
+
+</div>
+
+</div>
+
+<button class="action" onclick="saveFees()">
+
+💰 Save Fees
+
+</button>
+
+<div id="feeMessage"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 Fees Records</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Adm No</th>
+
+<th>Student</th>
+
+<th>Required</th>
+
+<th>Paid</th>
+
+<th>Balance</th>
+
+</tr>
+
+</thead>
+
+<tbody id="feeTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= PERFORMANCE ================= -->
+
+<div id="performance" class="section">
+
+<div class="card">
+
+<h2>📚 Student Performance</h2>
+
+<div class="row">
+
+<div>
+
+<label>Admission Number</label>
+
+<input id="perfAdmNo" placeholder="ADM001">
+
+</div>
+
+
+<div>
+
+<label>Subject</label>
+
+<select id="subject">
+
+<option>Mathematics</option>
+<option>English</option>
+<option>Kiswahili</option>
+<option>Science</option>
+<option>Social Studies</option>
+<option>CRE</option>
+<option>Agriculture</option>
+<option>Creative Arts</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Marks</label>
+
+<input type="number" id="marks" min="0" max="100">
+
+</div>
+
+
+<div>
+
+<label>Term</label>
+
+<select id="term">
+
+<option>Term 1</option>
+<option>Term 2</option>
+<option>Term 3</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button class="action" onclick="savePerformance()">
+
+📚 Save Marks
+
+</button>
+
+<div id="performanceMessage"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📈 Performance Records</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Adm No</th>
+
+<th>Student</th>
+
+<th>Subject</th>
+
+<th>Marks</th>
+
+<th>Grade</th>
+
+<th>Term</th>
+
+</tr>
+
+</thead>
+
+<tbody id="performanceTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= REPORTS ================= -->
+
+<div id="reports" class="section">
+
+<div class="card">
+
+<h2>📊 School Reports</h2>
+
+<p>
+
+<strong>Total Students:</strong>
+
+<span id="reportStudents">0</span>
+
+</p>
+
+<p>
+
+<strong>Total Fees Collected:</strong>
+
+KSh <span id="reportFees">0</span>
+
+</p>
+
+<p>
+
+<strong>Total Outstanding Fees:</strong>
+
+KSh <span id="reportBalance">0</span>
+
+</p>
+
+<h3>Performance Summary</h3>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+
+<th>Average Marks</th>
+
+<th>Overall Grade</th>
+
+</tr>
+
+</thead>
+
+<tbody id="reportPerformance">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
 <script>
 
-let students = [
+/* =================================================
+   DATA
+================================================= */
 
-    {
-        admNo: "ADM001",
-        name: "John Kiptoo",
-        grade: "Grade 6",
-        gender: "Male",
-        dob: "2014-05-12",
-        birthCert: "SAMPLE001"
-    },
+let students = JSON.parse(
+    localStorage.getItem("students")
+) || [
 
-    {
-        admNo: "ADM002",
-        name: "Mary Chebet",
-        grade: "Grade 5",
-        gender: "Female",
-        dob: "2015-08-20",
-        birthCert: "SAMPLE002"
-    },
+{
+admNo: "ADM001",
+name: "John Kiptoo",
+grade: "Grade 6",
+gender: "Male",
+dob: "2014-05-12",
+birthCert: "SAMPLE001",
+parentName: "Sample Parent",
+parentPhone: "0700000000"
+},
 
-    {
-        admNo: "ADM003",
-        name: "Peter Langat",
-        grade: "Grade 4",
-        gender: "Male",
-        dob: "2016-02-10",
-        birthCert: "SAMPLE003"
-    }
+{
+admNo: "ADM002",
+name: "Mary Chebet",
+grade: "Grade 5",
+gender: "Female",
+dob: "2015-08-20",
+birthCert: "SAMPLE002",
+parentName: "Sample Parent",
+parentPhone: "0711111111"
+},
+
+{
+admNo: "ADM003",
+name: "Peter Langat",
+grade: "Grade 4",
+gender: "Male",
+dob: "2016-02-10",
+birthCert: "SAMPLE003",
+parentName: "Sample Parent",
+parentPhone: "0722222222"
+}
 
 ];
 
-function searchStudent() {
 
-    let search = document
-        .getElementById("searchInput")
-        .value
-        .trim()
-        .toUpperCase();
+let fees = JSON.parse(
+    localStorage.getItem("fees")
+) || [];
 
-    let student = students.find(
-        s => s.admNo.toUpperCase() === search
-    );
 
-    let info = document.getElementById("studentInfo");
+let performance = JSON.parse(
+    localStorage.getItem("performance")
+) || [];
 
-    if (!student) {
 
-        info.style.display = "block";
+/* =================================================
+   SAVE DATA
+================================================= */
 
-        info.innerHTML =
-            "<strong>Student not found.</strong>";
+function saveData() {
 
-        return;
-    }
+localStorage.setItem(
+    "students",
+    JSON.stringify(students)
+);
 
-    info.style.display = "block";
+localStorage.setItem(
+    "fees",
+    JSON.stringify(fees)
+);
 
-    info.innerHTML = `
-        <h3>Student Details</h3>
+localStorage.setItem(
+    "performance",
+    JSON.stringify(performance)
+);
 
-        <p><strong>Admission No:</strong>
-        ${student.admNo}</p>
-
-        <p><strong>Name:</strong>
-        ${student.name}</p>
-
-        <p><strong>Grade:</strong>
-        ${student.grade}</p>
-
-        <p><strong>Gender:</strong>
-        ${student.gender}</p>
-
-        <p><strong>Date of Birth:</strong>
-        ${student.dob}</p>
-
-        <p><strong>Birth Certificate No:</strong>
-        ${student.birthCert}</p>
-    `;
 }
 
+
+/* =================================================
+   NAVIGATION
+================================================= */
+
+function showSection(id) {
+
+let sections =
+document.querySelectorAll(".section");
+
+sections.forEach(section => {
+
+section.classList.remove("active");
+
+});
+
+document
+.getElementById(id)
+.classList.add("active");
+
+updateAll();
+
+}
+
+
+/* =================================================
+   ADD STUDENT
+================================================= */
 
 function addStudent() {
 
-    let admNo =
-        document.getElementById("admNo").value.trim();
+let student = {
 
-    let name =
-        document.getElementById("studentName").value.trim();
+admNo:
+document.getElementById("admNo").value.trim(),
 
-    let grade =
-        document.getElementById("grade").value;
+name:
+document.getElementById("studentName").value.trim(),
 
-    let gender =
-        document.getElementById("gender").value;
+grade:
+document.getElementById("grade").value,
 
-    let dob =
-        document.getElementById("dob").value;
+gender:
+document.getElementById("gender").value,
 
-    let birthCert =
-        document.getElementById("birthCert").value.trim();
+dob:
+document.getElementById("dob").value,
 
+birthCert:
+document.getElementById("birthCert").value.trim(),
 
-    if (!admNo || !name || !grade || !gender) {
+parentName:
+document.getElementById("parentName").value.trim(),
 
-        alert("Please fill in the required information.");
+parentPhone:
+document.getElementById("parentPhone").value.trim()
 
-        return;
-    }
-
-
-    students.push({
-        admNo: admNo,
-        name: name,
-        grade: grade,
-        gender: gender,
-        dob: dob,
-        birthCert: birthCert
-    });
+};
 
 
-    document.getElementById("totalStudents").innerText =
-        students.length;
+if (
+!student.admNo ||
+!student.name ||
+!student.grade ||
+!student.gender
+) {
 
+showMessage(
+"admissionMessage",
+"Please fill in the required fields.",
+"red"
+);
 
-    alert("Student added successfully!");
-
-    document.getElementById("admNo").value = "";
-    document.getElementById("studentName").value = "";
-    document.getElementById("grade").value = "";
-    document.getElementById("gender").value = "";
-    document.getElementById("dob").value = "";
-    document.getElementById("birthCert").value = "";
+return;
 
 }
+
+
+let exists = students.find(
+s => s.admNo.toLowerCase()
+=== student.admNo.toLowerCase()
+);
+
+
+if (exists) {
+
+showMessage(
+"admissionMessage",
+"Admission number already exists.",
+"red"
+);
+
+return;
+
+}
+
+
+students.push(student);
+
+saveData();
+
+clearAdmissionForm();
+
+showMessage(
+"admissionMessage",
+"Student registered successfully!",
+"green"
+);
+
+updateAll();
+
+}
+
+
+/* =================================================
+   CLEAR ADMISSION FORM
+================================================= */
+
+function clearAdmissionForm() {
+
+document.getElementById("admNo").value = "";
+
+document.getElementById("studentName").value = "";
+
+document.getElementById("grade").value = "";
+
+document.getElementById("gender").value = "";
+
+document.getElementById("dob").value = "";
+
+document.getElementById("birthCert").value = "";
+
+document.getElementById("parentName").value = "";
+
+document.getElementById("parentPhone").value = "";
+
+}
+
+
+/* =================================================
+   SEARCH
+================================================= */
+
+function searchStudent() {
+
+let search =
+document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
+
+let student =
+students.find(s =>
+
+s.admNo.toLowerCase()
+.includes(search)
+
+||
+
+s.name.toLowerCase()
+.includes(search)
+
+||
+
+s.birthCert.toLowerCase()
+.includes(search)
+
+);
+
+
+let result =
+document.getElementById("searchResult");
+
+
+if (!student) {
+
+result.innerHTML =
+
+`<div class="result">
+
+<strong>Student not found.</strong>
+
+</div>`;
+
+return;
+
+}
+
+
+let studentFees =
+fees.find(f =>
+f.admNo === student.admNo
+);
+
+
+let required =
+studentFees ?
+studentFees.required : 0;
+
+
+let paid =
+studentFees ?
+studentFees.paid : 0;
+
+
+let balance =
+required - paid;
+
+
+result.innerHTML =
+
+`
+
+<div class="result">
+
+<h3>👤 Student Details</h3>
+
+<p>
+<strong>Admission No:</strong>
+${student.admNo}
+</p>
+
+<p>
+<strong>Name:</strong>
+${student.name}
+</p>
+
+<p>
+<strong>Grade:</strong>
+${student.grade}
+</p>
+
+<p>
+<strong>Gender:</strong>
+${student.gender}
+</p>
+
+<p>
+<strong>Date of Birth:</strong>
+${student.dob}
+</p>
+
+<p>
+<strong>Birth Certificate:</strong>
+${student.birthCert}
+</p>
+
+<hr>
+
+<h3>👨‍👩‍👧 Parent / Guardian</h3>
+
+<p>
+<strong>Name:</strong>
+${student.parentName || "Not recorded"}
+</p>
+
+<p>
+<strong>Phone:</strong>
+${student.parentPhone || "Not recorded"}
+</p>
+
+<hr>
+
+<h3>💰 Fees</h3>
+
+<p>
+<strong>Required:</strong>
+KSh ${required.toLocaleString()}
+</p>
+
+<p>
+<strong>Paid:</strong>
+KSh ${paid.toLocaleString()}
+</p>
+
+<p>
+<strong>Balance:</strong>
+KSh ${balance.toLocaleString()}
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* =================================================
+   FEES
+================================================= */
+
+function saveFees() {
+
+let admNo =
+document
+.getElementById("feeAdmNo")
+.value.trim();
+
+
+let required =
+Number(
+document.getElementById("feeRequired").value
+);
+
+
+let paid =
+Number(
+document.getElementById("feePaid").value
+);
+
+
+let student =
+students.find(
+s => s.admNo.toLowerCase()
+=== admNo.toLowerCase()
+);
+
+
+if (!student) {
+
+showMessage(
+"feeMessage",
+"Student not found.",
+"red"
+);
+
+return;
+
+}
+
+
+let existing =
+fees.find(
+f => f.admNo === student.admNo
+);
+
+
+if (existing) {
+
+existing.required = required;
+
+existing.paid = paid;
+
+} else {
+
+fees.push({
+
+admNo: student.admNo,
+
+required: required,
+
+paid: paid
+
+});
+
+}
+
+
+saveData();
+
+showMessage(
+"feeMessage",
+"Fees saved successfully!",
+"green"
+);
+
+updateAll();
+
+}
+
+
+/* =================================================
+   PERFORMANCE
+================================================= */
+
+function savePerformance() {
+
+let admNo =
+document
+.getElementById("perfAdmNo")
+.value.trim();
+
+
+let subject =
+document.getElementById("subject")
+.value;
+
+
+let marks =
+Number(
+document.getElementById("marks")
+.value
+);
+
+
+let term =
+document.getElementById("term")
+.value;
+
+
+let student =
+students.find(
+s => s.admNo.toLowerCase()
+=== admNo.toLowerCase()
+);
+
+
+if (!student) {
+
+showMessage(
+"performanceMessage",
+"Student not found.",
+"red"
+);
+
+return;
+
+}
+
+
+if (
+marks < 0 ||
+marks > 100 ||
+isNaN(marks)
+) {
+
+showMessage(
+"performanceMessage",
+"Marks must be between 0 and 100.",
+"red"
+);
+
+return;
+
+}
+
+
+performance.push({
+
+admNo: student.admNo,
+
+name: student.name,
+
+subject: subject,
+
+marks: marks,
+
+term: term
+
+});
+
+
+saveData();
+
+document.getElementById("marks").value = "";
+
+showMessage(
+"performanceMessage",
+"Performance saved successfully!",
+"green"
+);
+
+updateAll();
+
+}
+
+
+/* =================================================
+   GRADE
+================================================= */
+
+function getGrade(mark) {
+
+if (mark >= 80) return "A";
+
+if (mark >= 70) return "B";
+
+if (mark >= 60) return "C";
+
+if (mark >= 50) return "D";
+
+return "E";
+
+}
+
+
+/* =================================================
+   STUDENT TABLE
+================================================= */
+
+function updateStudentTable() {
+
+let table =
+document.getElementById("studentTable");
+
+
+table.innerHTML = "";
+
+
+students.forEach(student => {
+
+table.innerHTML += `
+
+<tr>
+
+<td>${student.admNo}</td>
+
+<td>${student.name}</td>
+
+<td>${student.grade}</td>
+
+<td>${student.gender}</td>
+
+<td>${student.parentName}</td>
+
+<td>${student.parentPhone}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =================================================
+   FEES TABLE
+================================================= */
+
+function updateFeeTable() {
+
+let table =
+document.getElementById("feeTable");
+
+
+table.innerHTML = "";
+
+
+fees.forEach(fee => {
+
+let student =
+students.find(
+s => s.admNo === fee.admNo
+);
+
+
+let name =
+student ? student.name : "Unknown";
+
+
+let balance =
+fee.required - fee.paid;
+
+
+table.innerHTML += `
+
+<tr>
+
+<td>${fee.admNo}</td>
+
+<td>${name}</td>
+
+<td>KSh ${fee.required.toLocaleString()}</td>
+
+<td>KSh ${fee.paid.toLocaleString()}</td>
+
+<td>KSh ${balance.toLocaleString()}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =================================================
+   PERFORMANCE TABLE
+================================================= */
+
+function updatePerformanceTable() {
+
+let table =
+document.getElementById("performanceTable");
+
+
+table.innerHTML = "";
+
+
+performance.forEach(record => {
+
+table.innerHTML += `
+
+<tr>
+
+<td>${record.admNo}</td>
+
+<td>${record.name}</td>
+
+<td>${record.subject}</td>
+
+<td>${record.marks}</td>
+
+<td>${getGrade(record.marks)}</td>
+
+<td>${record.term}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =================================================
+   PERFORMANCE REPORT
+================================================= */
+
+function updatePerformanceReport() {
+
+let table =
+document.getElementById("reportPerformance");
+
+
+table.innerHTML = "";
+
+
+students.forEach(student => {
+
+let records =
+performance.filter(
+p => p.admNo === student.admNo
+);
+
+
+if (records.length === 0) {
+
+return;
+
+}
+
+
+let total =
+records.reduce(
+(sum, record) =>
+sum + record.marks,
+0
+);
+
+
+let average =
+total / records.length;
+
+
+table.innerHTML += `
+
+<tr>
+
+<td>${student.name}</td>
+
+<td>${average.toFixed(1)}</td>
+
+<td>${getGrade(average)}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =================================================
+   DASHBOARD
+================================================= */
+
+function updateDashboard() {
+
+let boys =
+students.filter(
+s => s.gender === "Male"
+).length;
+
+
+let girls =
+students.filter(
+s => s.gender === "Female"
+).length;
+
+
+let totalCollected =
+fees.reduce(
+(sum, f) => sum + f.paid,
+0
+);
+
+
+let totalBalance =
+fees.reduce(
+(sum, f) =>
+sum + (f.required - f.paid),
+0
+);
+
+
+document.getElementById(
+"totalStudents"
+).innerText =
+students.length;
+
+
+document.getElementById(
+"totalBoys"
+).innerText =
+boys;
+
+
+document.getElementById(
+"totalGirls"
+).innerText =
+girls;
+
+
+document.getElementById(
+"totalFees"
+).innerText =
+"KSh " +
+totalCollected.toLocaleString();
+
+
+document.getElementById(
+"reportStudents"
+).innerText =
+students.length;
+
+
+document.getElementById(
+"reportFees"
+).innerText =
+totalCollected.toLocaleString();
+
+
+document.getElementById(
+"reportBalance"
+).innerText =
+totalBalance.toLocaleString();
+
+}
+
+
+/* =================================================
+   UPDATE EVERYTHING
+================================================= */
+
+function updateAll() {
+
+updateDashboard();
+
+updateStudentTable();
+
+updateFeeTable();
+
+updatePerformanceTable();
+
+updatePerformanceReport();
+
+}
+
+
+/* =================================================
+   MESSAGE
+================================================= */
+
+function showMessage(
+element,
+message,
+type
+) {
+
+let box =
+document.getElementById(element);
+
+
+box.className = "message";
+
+box.innerText = message;
+
+
+if (type === "green") {
+
+box.style.background = "#d9f7df";
+
+box.style.color = "#146c2e";
+
+} else {
+
+box.style.background = "#ffdede";
+
+box.style.color = "#a00000";
+
+}
+
+}
+
+
+/* =================================================
+   START SYSTEM
+================================================= */
+
+updateAll();
 
 </script>
 
