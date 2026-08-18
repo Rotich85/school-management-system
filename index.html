@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>School Management System</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -18,8 +16,6 @@ body {
     background: #f3f6fa;
     color: #222;
 }
-
-/* HEADER */
 
 header {
     background: #174ea6;
@@ -36,15 +32,13 @@ header p {
     margin-bottom: 0;
 }
 
-/* NAVIGATION */
-
 nav {
     background: white;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0,0,0,.15);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -67,15 +61,11 @@ nav button:hover {
     color: white;
 }
 
-/* CONTAINER */
-
 .container {
     max-width: 1100px;
     margin: auto;
     padding: 20px;
 }
-
-/* SECTIONS */
 
 .section {
     display: none;
@@ -85,25 +75,21 @@ nav button:hover {
     display: block;
 }
 
-/* CARDS */
-
 .card {
     background: white;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 
 .card h2 {
     color: #174ea6;
 }
 
-/* DASHBOARD */
-
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 15px;
 }
 
@@ -116,11 +102,9 @@ nav button:hover {
 }
 
 .stat h3 {
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
 }
-
-/* FORMS */
 
 .row {
     display: grid;
@@ -134,8 +118,7 @@ label {
     margin-top: 8px;
 }
 
-input,
-select {
+input, select {
     width: 100%;
     padding: 12px;
     margin: 6px 0 10px;
@@ -144,7 +127,7 @@ select {
     font-size: 16px;
 }
 
-button.action {
+.action {
     background: #174ea6;
     color: white;
     border: none;
@@ -155,11 +138,9 @@ button.action {
     margin-top: 8px;
 }
 
-button.action:hover {
+.action:hover {
     background: #0d3b7d;
 }
-
-/* TABLE */
 
 .table-container {
     overflow-x: auto;
@@ -171,8 +152,7 @@ table {
     margin-top: 15px;
 }
 
-th,
-td {
+th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
@@ -183,8 +163,6 @@ th {
     color: white;
 }
 
-/* SEARCH RESULT */
-
 .result {
     background: #eef5ff;
     border-left: 5px solid #174ea6;
@@ -193,18 +171,13 @@ th {
     border-radius: 5px;
 }
 
-/* MESSAGE */
-
 .message {
     margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
 }
 
-/* MOBILE */
-
-@media(max-width: 700px) {
-
+@media(max-width:700px) {
     .dashboard {
         grid-template-columns: 1fr 1fr;
     }
@@ -217,20 +190,15 @@ th {
         min-width: 45%;
     }
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
 <h1>🏫 School Management System</h1>
-
 <p>Admissions • Parents • Fees • Performance • Reports</p>
-
 </header>
-
 
 <nav>
 
@@ -264,11 +232,9 @@ th {
 
 </nav>
 
-
 <div class="container">
 
-
-<!-- ================= DASHBOARD ================= -->
+<!-- DASHBOARD -->
 
 <div id="dashboard" class="section active">
 
@@ -279,48 +245,32 @@ th {
 <div class="dashboard">
 
 <div class="stat">
-
 <h3 id="totalStudents">0</h3>
-
 <p>Total Students</p>
-
 </div>
 
-
 <div class="stat">
-
 <h3 id="totalBoys">0</h3>
-
 <p>Boys</p>
-
 </div>
 
-
 <div class="stat">
-
 <h3 id="totalGirls">0</h3>
-
 <p>Girls</p>
-
 </div>
-
 
 <div class="stat">
-
-<h3 id="totalFees">0</h3>
-
+<h3 id="totalFees">KSh 0</h3>
 <p>Fees Collected</p>
-
 </div>
 
 </div>
 
 </div>
-
 </div>
 
 
-<!-- ================= ADMISSION ================= -->
+<!-- ADMISSIONS -->
 
 <div id="admission" class="section">
 
@@ -331,31 +281,20 @@ th {
 <div class="row">
 
 <div>
-
 <label>Admission Number</label>
-
 <input id="admNo" placeholder="ADM001">
-
 </div>
 
-
 <div>
-
 <label>Student Name</label>
-
 <input id="studentName" placeholder="Full name">
-
 </div>
 
-
 <div>
-
 <label>Class / Grade</label>
 
 <select id="grade">
-
 <option value="">Select Grade</option>
-
 <option>Grade 1</option>
 <option>Grade 2</option>
 <option>Grade 3</option>
@@ -365,80 +304,79 @@ th {
 <option>Grade 7</option>
 <option>Grade 8</option>
 <option>Grade 9</option>
-
 </select>
 
 </div>
 
-
 <div>
-
 <label>Gender</label>
 
 <select id="gender">
-
 <option value="">Select Gender</option>
-
 <option>Male</option>
-
 <option>Female</option>
+</select>
+
+</div>
+
+<div>
+<label>Date of Birth</label>
+<input type="date" id="dob">
+</div>
+
+<div>
+<label>Birth Certificate Number</label>
+<input id="birthCert" placeholder="Sample only">
+</div>
+
+<div>
+<label>Parent / Guardian Name</label>
+<input id="parentName" placeholder="Parent name">
+</div>
+
+<div>
+<label>Parent / Guardian ID</label>
+<input id="parentId" placeholder="Sample ID only">
+</div>
+
+<div>
+<label>Parent Phone</label>
+<input id="parentPhone" placeholder="07XXXXXXXX">
+</div>
+
+<div>
+<label>Relationship</label>
+
+<select id="relationship">
+
+<option value="">Select Relationship</option>
+<option>Father</option>
+<option>Mother</option>
+<option>Guardian</option>
+<option>Other</option>
 
 </select>
 
 </div>
 
-
 <div>
-
-<label>Date of Birth</label>
-
-<input type="date" id="dob">
-
-</div>
-
-
-<div>
-
-<label>Birth Certificate Number</label>
-
-<input id="birthCert" placeholder="Sample only">
-
-</div>
-
-
-<div>
-
-<label>Parent / Guardian Name</label>
-
-<input id="parentName" placeholder="Parent name">
-
-</div>
-
-
-<div>
-
-<label>Parent Phone</label>
-
-<input id="parentPhone" placeholder="07XXXXXXXX">
-
+<label>Parent / Guardian Address</label>
+<input id="parentAddress" placeholder="Address">
 </div>
 
 </div>
 
 <button class="action" onclick="addStudent()">
-
 ➕ Register Student
-
 </button>
 
 <div id="admissionMessage"></div>
 
 </div>
-
 </div>
 
 
-<!-- ================= STUDENTS ================= -->
+<!-- STUDENTS -->
 
 <div id="students" class="section">
 
@@ -453,37 +391,28 @@ th {
 <thead>
 
 <tr>
-
 <th>Adm No</th>
-
 <th>Name</th>
-
 <th>Grade</th>
-
 <th>Gender</th>
-
 <th>Parent</th>
-
+<th>Parent ID</th>
 <th>Phone</th>
-
 </tr>
 
 </thead>
 
-<tbody id="studentTable">
-
-</tbody>
+<tbody id="studentTable"></tbody>
 
 </table>
 
 </div>
 
 </div>
-
 </div>
 
 
-<!-- ================= SEARCH ================= -->
+<!-- SEARCH -->
 
 <div id="search" class="section">
 
@@ -497,19 +426,16 @@ placeholder="Admission No, Name or Birth Certificate No"
 >
 
 <button class="action" onclick="searchStudent()">
-
 🔎 Search
-
 </button>
 
 <div id="searchResult"></div>
 
 </div>
-
 </div>
 
 
-<!-- ================= FEES ================= -->
+<!-- FEES -->
 
 <div id="fees" class="section">
 
@@ -520,37 +446,24 @@ placeholder="Admission No, Name or Birth Certificate No"
 <div class="row">
 
 <div>
-
 <label>Admission Number</label>
-
 <input id="feeAdmNo" placeholder="ADM001">
-
 </div>
 
-
 <div>
-
 <label>Total Fees Required</label>
-
 <input type="number" id="feeRequired" placeholder="0">
-
 </div>
 
-
 <div>
-
 <label>Amount Paid</label>
-
 <input type="number" id="feePaid" placeholder="0">
-
 </div>
 
 </div>
 
 <button class="action" onclick="saveFees()">
-
 💰 Save Fees
-
 </button>
 
 <div id="feeMessage"></div>
@@ -569,24 +482,16 @@ placeholder="Admission No, Name or Birth Certificate No"
 <thead>
 
 <tr>
-
 <th>Adm No</th>
-
 <th>Student</th>
-
 <th>Required</th>
-
 <th>Paid</th>
-
 <th>Balance</th>
-
 </tr>
 
 </thead>
 
-<tbody id="feeTable">
-
-</tbody>
+<tbody id="feeTable"></tbody>
 
 </table>
 
@@ -597,7 +502,7 @@ placeholder="Admission No, Name or Birth Certificate No"
 </div>
 
 
-<!-- ================= PERFORMANCE ================= -->
+<!-- PERFORMANCE -->
 
 <div id="performance" class="section">
 
@@ -608,16 +513,11 @@ placeholder="Admission No, Name or Birth Certificate No"
 <div class="row">
 
 <div>
-
 <label>Admission Number</label>
-
 <input id="perfAdmNo" placeholder="ADM001">
-
 </div>
 
-
 <div>
-
 <label>Subject</label>
 
 <select id="subject">
@@ -625,7 +525,7 @@ placeholder="Admission No, Name or Birth Certificate No"
 <option>Mathematics</option>
 <option>English</option>
 <option>Kiswahili</option>
-<option>Science</option>
+<option>Integrated Science</option>
 <option>Social Studies</option>
 <option>CRE</option>
 <option>Agriculture</option>
@@ -635,26 +535,18 @@ placeholder="Admission No, Name or Birth Certificate No"
 
 </div>
 
-
 <div>
-
 <label>Marks</label>
-
 <input type="number" id="marks" min="0" max="100">
-
 </div>
 
-
 <div>
-
 <label>Term</label>
 
 <select id="term">
-
 <option>Term 1</option>
 <option>Term 2</option>
 <option>Term 3</option>
-
 </select>
 
 </div>
@@ -662,9 +554,7 @@ placeholder="Admission No, Name or Birth Certificate No"
 </div>
 
 <button class="action" onclick="savePerformance()">
-
 📚 Save Marks
-
 </button>
 
 <div id="performanceMessage"></div>
@@ -683,26 +573,17 @@ placeholder="Admission No, Name or Birth Certificate No"
 <thead>
 
 <tr>
-
 <th>Adm No</th>
-
 <th>Student</th>
-
 <th>Subject</th>
-
 <th>Marks</th>
-
 <th>Grade</th>
-
 <th>Term</th>
-
 </tr>
 
 </thead>
 
-<tbody id="performanceTable">
-
-</tbody>
+<tbody id="performanceTable"></tbody>
 
 </table>
 
@@ -713,7 +594,7 @@ placeholder="Admission No, Name or Birth Certificate No"
 </div>
 
 
-<!-- ================= REPORTS ================= -->
+<!-- REPORTS -->
 
 <div id="reports" class="section">
 
@@ -722,27 +603,18 @@ placeholder="Admission No, Name or Birth Certificate No"
 <h2>📊 School Reports</h2>
 
 <p>
-
 <strong>Total Students:</strong>
-
 <span id="reportStudents">0</span>
-
 </p>
 
 <p>
-
 <strong>Total Fees Collected:</strong>
-
 KSh <span id="reportFees">0</span>
-
 </p>
 
 <p>
-
 <strong>Total Outstanding Fees:</strong>
-
 KSh <span id="reportBalance">0</span>
-
 </p>
 
 <h3>Performance Summary</h3>
@@ -754,20 +626,14 @@ KSh <span id="reportBalance">0</span>
 <thead>
 
 <tr>
-
 <th>Student</th>
-
 <th>Average Marks</th>
-
 <th>Overall Grade</th>
-
 </tr>
 
 </thead>
 
-<tbody id="reportPerformance">
-
-</tbody>
+<tbody id="reportPerformance"></tbody>
 
 </table>
 
@@ -777,107 +643,109 @@ KSh <span id="reportBalance">0</span>
 
 </div>
 
-
 </div>
 
 
 <script>
 
-/* =================================================
-   DATA
-================================================= */
+/* ==========================
+DATA
+========================== */
 
-let students = JSON.parse(
-    localStorage.getItem("students")
-) || [
+let students =
+JSON.parse(localStorage.getItem("students")) || [
 
 {
-admNo: "ADM001",
-name: "John Kiptoo",
-grade: "Grade 6",
-gender: "Male",
-dob: "2014-05-12",
-birthCert: "SAMPLE001",
-parentName: "Sample Parent",
-parentPhone: "0700000000"
+admNo:"ADM001",
+name:"John Kiptoo",
+grade:"Grade 6",
+gender:"Male",
+dob:"2014-05-12",
+birthCert:"SAMPLE001",
+parentName:"Sample Parent",
+parentId:"SAMPLE-ID-001",
+parentPhone:"0700000000",
+relationship:"Father",
+parentAddress:"Sample Address"
 },
 
 {
-admNo: "ADM002",
-name: "Mary Chebet",
-grade: "Grade 5",
-gender: "Female",
-dob: "2015-08-20",
-birthCert: "SAMPLE002",
-parentName: "Sample Parent",
-parentPhone: "0711111111"
+admNo:"ADM002",
+name:"Mary Chebet",
+grade:"Grade 5",
+gender:"Female",
+dob:"2015-08-20",
+birthCert:"SAMPLE002",
+parentName:"Sample Parent",
+parentId:"SAMPLE-ID-002",
+parentPhone:"0711111111",
+relationship:"Mother",
+parentAddress:"Sample Address"
 },
 
 {
-admNo: "ADM003",
-name: "Peter Langat",
-grade: "Grade 4",
-gender: "Male",
-dob: "2016-02-10",
-birthCert: "SAMPLE003",
-parentName: "Sample Parent",
-parentPhone: "0722222222"
+admNo:"ADM003",
+name:"Peter Langat",
+grade:"Grade 4",
+gender:"Male",
+dob:"2016-02-10",
+birthCert:"SAMPLE003",
+parentName:"Sample Parent",
+parentId:"SAMPLE-ID-003",
+parentPhone:"0722222222",
+relationship:"Guardian",
+parentAddress:"Sample Address"
 }
 
 ];
 
 
-let fees = JSON.parse(
-    localStorage.getItem("fees")
-) || [];
+let fees =
+JSON.parse(localStorage.getItem("fees")) || [];
 
 
-let performance = JSON.parse(
-    localStorage.getItem("performance")
-) || [];
+let performance =
+JSON.parse(localStorage.getItem("performance")) || [];
 
 
-/* =================================================
-   SAVE DATA
-================================================= */
+/* ==========================
+SAVE
+========================== */
 
 function saveData() {
 
 localStorage.setItem(
-    "students",
-    JSON.stringify(students)
+"students",
+JSON.stringify(students)
 );
 
 localStorage.setItem(
-    "fees",
-    JSON.stringify(fees)
+"fees",
+JSON.stringify(fees)
 );
 
 localStorage.setItem(
-    "performance",
-    JSON.stringify(performance)
+"performance",
+JSON.stringify(performance)
 );
 
 }
 
 
-/* =================================================
-   NAVIGATION
-================================================= */
+/* ==========================
+NAVIGATION
+========================== */
 
 function showSection(id) {
 
-let sections =
-document.querySelectorAll(".section");
-
-sections.forEach(section => {
+document.querySelectorAll(".section")
+.forEach(section => {
 
 section.classList.remove("active");
 
 });
 
-document
-.getElementById(id)
+document.getElementById(id)
 .classList.add("active");
 
 updateAll();
@@ -885,9 +753,9 @@ updateAll();
 }
 
 
-/* =================================================
-   ADD STUDENT
-================================================= */
+/* ==========================
+ADD STUDENT
+========================== */
 
 function addStudent() {
 
@@ -914,8 +782,17 @@ document.getElementById("birthCert").value.trim(),
 parentName:
 document.getElementById("parentName").value.trim(),
 
+parentId:
+document.getElementById("parentId").value.trim(),
+
 parentPhone:
-document.getElementById("parentPhone").value.trim()
+document.getElementById("parentPhone").value.trim(),
+
+relationship:
+document.getElementById("relationship").value,
+
+parentAddress:
+document.getElementById("parentAddress").value.trim()
 
 };
 
@@ -939,8 +816,10 @@ return;
 
 
 let exists = students.find(
-s => s.admNo.toLowerCase()
-=== student.admNo.toLowerCase()
+s =>
+s.admNo.toLowerCase()
+===
+student.admNo.toLowerCase()
 );
 
 
@@ -974,77 +853,72 @@ updateAll();
 }
 
 
-/* =================================================
-   CLEAR ADMISSION FORM
-================================================= */
+/* ==========================
+CLEAR FORM
+========================== */
 
 function clearAdmissionForm() {
 
-document.getElementById("admNo").value = "";
-
-document.getElementById("studentName").value = "";
-
-document.getElementById("grade").value = "";
-
-document.getElementById("gender").value = "";
-
-document.getElementById("dob").value = "";
-
-document.getElementById("birthCert").value = "";
-
-document.getElementById("parentName").value = "";
-
-document.getElementById("parentPhone").value = "";
+document.getElementById("admNo").value="";
+document.getElementById("studentName").value="";
+document.getElementById("grade").value="";
+document.getElementById("gender").value="";
+document.getElementById("dob").value="";
+document.getElementById("birthCert").value="";
+document.getElementById("parentName").value="";
+document.getElementById("parentId").value="";
+document.getElementById("parentPhone").value="";
+document.getElementById("relationship").value="";
+document.getElementById("parentAddress").value="";
 
 }
 
 
-/* =================================================
-   SEARCH
-================================================= */
+/* ==========================
+SEARCH
+========================== */
 
 function searchStudent() {
 
 let search =
-document
-.getElementById("searchInput")
-.value
-.trim()
-.toLowerCase();
-
-
-let student =
-students.find(s =>
-
-s.admNo.toLowerCase()
-.includes(search)
-
-||
-
-s.name.toLowerCase()
-.includes(search)
-
-||
-
-s.birthCert.toLowerCase()
-.includes(search)
-
-);
+document.getElementById("searchInput")
+.value.trim().toLowerCase();
 
 
 let result =
 document.getElementById("searchResult");
 
 
+if (!search) {
+
+result.innerHTML =
+'<div class="result">Enter something to search.</div>';
+
+return;
+
+}
+
+
+let student =
+students.find(s =>
+
+s.admNo.toLowerCase().includes(search)
+
+||
+
+s.name.toLowerCase().includes(search)
+
+||
+
+s.birthCert.toLowerCase().includes(search)
+
+);
+
+
 if (!student) {
 
 result.innerHTML =
-
-`<div class="result">
-
-<strong>Student not found.</strong>
-
-</div>`;
+'<div class="result"><strong>Student not found.</strong></div>';
 
 return;
 
@@ -1058,89 +932,70 @@ f.admNo === student.admNo
 
 
 let required =
-studentFees ?
-studentFees.required : 0;
-
+studentFees ? studentFees.required : 0;
 
 let paid =
-studentFees ?
-studentFees.paid : 0;
-
+studentFees ? studentFees.paid : 0;
 
 let balance =
 required - paid;
 
 
-result.innerHTML =
-
-`
+result.innerHTML = `
 
 <div class="result">
 
 <h3>👤 Student Details</h3>
 
-<p>
-<strong>Admission No:</strong>
-${student.admNo}
-</p>
+<p><strong>Admission No:</strong>
+${student.admNo}</p>
 
-<p>
-<strong>Name:</strong>
-${student.name}
-</p>
+<p><strong>Name:</strong>
+${student.name}</p>
 
-<p>
-<strong>Grade:</strong>
-${student.grade}
-</p>
+<p><strong>Grade:</strong>
+${student.grade}</p>
 
-<p>
-<strong>Gender:</strong>
-${student.gender}
-</p>
+<p><strong>Gender:</strong>
+${student.gender}</p>
 
-<p>
-<strong>Date of Birth:</strong>
-${student.dob}
-</p>
+<p><strong>Date of Birth:</strong>
+${student.dob}</p>
 
-<p>
-<strong>Birth Certificate:</strong>
-${student.birthCert}
-</p>
+<p><strong>Birth Certificate:</strong>
+${student.birthCert || "Not recorded"}</p>
 
 <hr>
 
 <h3>👨‍👩‍👧 Parent / Guardian</h3>
 
-<p>
-<strong>Name:</strong>
-${student.parentName || "Not recorded"}
-</p>
+<p><strong>Name:</strong>
+${student.parentName || "Not recorded"}</p>
 
-<p>
-<strong>Phone:</strong>
-${student.parentPhone || "Not recorded"}
-</p>
+<p><strong>ID Number:</strong>
+${student.parentId || "Not recorded"}</p>
+
+<p><strong>Phone:</strong>
+${student.parentPhone || "Not recorded"}</p>
+
+<p><strong>Relationship:</strong>
+${student.relationship || "Not recorded"}</p>
+
+<p><strong>Address:</strong>
+${student.parentAddress || "Not recorded"}</p>
 
 <hr>
 
 <h3>💰 Fees</h3>
 
-<p>
-<strong>Required:</strong>
-KSh ${required.toLocaleString()}
-</p>
+<p><strong>Required:</strong>
+KSh ${required.toLocaleString()}</p>
 
-<p>
-<strong>Paid:</strong>
-KSh ${paid.toLocaleString()}
-</p>
+<p><strong>Paid:</strong>
+KSh ${paid.toLocaleString()}</p>
 
-<p>
-<strong>Balance:</strong>
-KSh ${balance.toLocaleString()}
-</p>
+<p><strong>Balance:</strong>
+KSh ${balance.toLocaleString()}</p>
 
 </div>
 
@@ -1149,15 +1004,14 @@ KSh ${balance.toLocaleString()}
 }
 
 
-/* =================================================
-   FEES
-================================================= */
+/* ==========================
+FEES
+========================== */
 
 function saveFees() {
 
 let admNo =
-document
-.getElementById("feeAdmNo")
+document.getElementById("feeAdmNo")
 .value.trim();
 
 
@@ -1175,8 +1029,10 @@ document.getElementById("feePaid").value
 
 let student =
 students.find(
-s => s.admNo.toLowerCase()
-=== admNo.toLowerCase()
+s =>
+s.admNo.toLowerCase()
+===
+admNo.toLowerCase()
 );
 
 
@@ -1195,25 +1051,23 @@ return;
 
 let existing =
 fees.find(
-f => f.admNo === student.admNo
+f =>
+f.admNo === student.admNo
 );
 
 
 if (existing) {
 
 existing.required = required;
-
 existing.paid = paid;
 
 } else {
 
 fees.push({
 
-admNo: student.admNo,
-
-required: required,
-
-paid: paid
+admNo:student.admNo,
+required:required,
+paid:paid
 
 });
 
@@ -1233,39 +1087,37 @@ updateAll();
 }
 
 
-/* =================================================
-   PERFORMANCE
-================================================= */
+/* ==========================
+PERFORMANCE
+========================== */
 
 function savePerformance() {
 
 let admNo =
-document
-.getElementById("perfAdmNo")
+document.getElementById("perfAdmNo")
 .value.trim();
 
 
 let subject =
-document.getElementById("subject")
-.value;
+document.getElementById("subject").value;
 
 
 let marks =
 Number(
-document.getElementById("marks")
-.value
+document.getElementById("marks").value
 );
 
 
 let term =
-document.getElementById("term")
-.value;
+document.getElementById("term").value;
 
 
 let student =
 students.find(
-s => s.admNo.toLowerCase()
-=== admNo.toLowerCase()
+s =>
+s.admNo.toLowerCase()
+===
+admNo.toLowerCase()
 );
 
 
@@ -1283,9 +1135,9 @@ return;
 
 
 if (
+isNaN(marks) ||
 marks < 0 ||
-marks > 100 ||
-isNaN(marks)
+marks > 100
 ) {
 
 showMessage(
@@ -1301,22 +1153,18 @@ return;
 
 performance.push({
 
-admNo: student.admNo,
-
-name: student.name,
-
-subject: subject,
-
-marks: marks,
-
-term: term
+admNo:student.admNo,
+name:student.name,
+subject:subject,
+marks:marks,
+term:term
 
 });
 
 
 saveData();
 
-document.getElementById("marks").value = "";
+document.getElementById("marks").value="";
 
 showMessage(
 "performanceMessage",
@@ -1329,36 +1177,32 @@ updateAll();
 }
 
 
-/* =================================================
-   GRADE
-================================================= */
+/* ==========================
+GRADE
+========================== */
 
 function getGrade(mark) {
 
-if (mark >= 80) return "A";
-
-if (mark >= 70) return "B";
-
-if (mark >= 60) return "C";
-
-if (mark >= 50) return "D";
+if(mark >= 80) return "A";
+if(mark >= 70) return "B";
+if(mark >= 60) return "C";
+if(mark >= 50) return "D";
 
 return "E";
 
 }
 
 
-/* =================================================
-   STUDENT TABLE
-================================================= */
+/* ==========================
+STUDENT TABLE
+========================== */
 
 function updateStudentTable() {
 
 let table =
 document.getElementById("studentTable");
 
-
-table.innerHTML = "";
+table.innerHTML="";
 
 
 students.forEach(student => {
@@ -1375,9 +1219,11 @@ table.innerHTML += `
 
 <td>${student.gender}</td>
 
-<td>${student.parentName}</td>
+<td>${student.parentName || ""}</td>
 
-<td>${student.parentPhone}</td>
+<td>${student.parentId || ""}</td>
+
+<td>${student.parentPhone || ""}</td>
 
 </tr>
 
@@ -1388,17 +1234,16 @@ table.innerHTML += `
 }
 
 
-/* =================================================
-   FEES TABLE
-================================================= */
+/* ==========================
+FEES TABLE
+========================== */
 
 function updateFeeTable() {
 
 let table =
 document.getElementById("feeTable");
 
-
-table.innerHTML = "";
+table.innerHTML="";
 
 
 fees.forEach(fee => {
@@ -1440,17 +1285,16 @@ table.innerHTML += `
 }
 
 
-/* =================================================
-   PERFORMANCE TABLE
-================================================= */
+/* ==========================
+PERFORMANCE TABLE
+========================== */
 
 function updatePerformanceTable() {
 
 let table =
 document.getElementById("performanceTable");
 
-
-table.innerHTML = "";
+table.innerHTML="";
 
 
 performance.forEach(record => {
@@ -1480,17 +1324,16 @@ table.innerHTML += `
 }
 
 
-/* =================================================
-   PERFORMANCE REPORT
-================================================= */
+/* ==========================
+REPORT
+========================== */
 
 function updatePerformanceReport() {
 
 let table =
 document.getElementById("reportPerformance");
 
-
-table.innerHTML = "";
+table.innerHTML="";
 
 
 students.forEach(student => {
@@ -1501,17 +1344,12 @@ p => p.admNo === student.admNo
 );
 
 
-if (records.length === 0) {
-
-return;
-
-}
+if(records.length === 0) return;
 
 
 let total =
 records.reduce(
-(sum, record) =>
-sum + record.marks,
+(sum,r) => sum + r.marks,
 0
 );
 
@@ -1539,9 +1377,9 @@ table.innerHTML += `
 }
 
 
-/* =================================================
-   DASHBOARD
-================================================= */
+/* ==========================
+DASHBOARD
+========================== */
 
 function updateDashboard() {
 
@@ -1557,16 +1395,16 @@ s => s.gender === "Female"
 ).length;
 
 
-let totalCollected =
+let collected =
 fees.reduce(
-(sum, f) => sum + f.paid,
+(sum,f) => sum + f.paid,
 0
 );
 
 
-let totalBalance =
+let balance =
 fees.reduce(
-(sum, f) =>
+(sum,f) =>
 sum + (f.required - f.paid),
 0
 );
@@ -1593,8 +1431,7 @@ girls;
 document.getElementById(
 "totalFees"
 ).innerText =
-"KSh " +
-totalCollected.toLocaleString();
+"KSh " + collected.toLocaleString();
 
 
 document.getElementById(
@@ -1606,39 +1443,20 @@ students.length;
 document.getElementById(
 "reportFees"
 ).innerText =
-totalCollected.toLocaleString();
+collected.toLocaleString();
 
 
 document.getElementById(
 "reportBalance"
 ).innerText =
-totalBalance.toLocaleString();
+balance.toLocaleString();
 
 }
 
 
-/* =================================================
-   UPDATE EVERYTHING
-================================================= */
-
-function updateAll() {
-
-updateDashboard();
-
-updateStudentTable();
-
-updateFeeTable();
-
-updatePerformanceTable();
-
-updatePerformanceReport();
-
-}
-
-
-/* =================================================
-   MESSAGE
-================================================= */
+/* ==========================
+MESSAGES
+========================== */
 
 function showMessage(
 element,
@@ -1649,32 +1467,29 @@ type
 let box =
 document.getElementById(element);
 
+box.className="message";
 
-box.className = "message";
-
-box.innerText = message;
+box.innerText=message;
 
 
-if (type === "green") {
+if(type==="green") {
 
-box.style.background = "#d9f7df";
-
-box.style.color = "#146c2e";
+box.style.background="#d9f7df";
+box.style.color="#146c2e";
 
 } else {
 
-box.style.background = "#ffdede";
-
-box.style.color = "#a00000";
-
-}
+box.style.background="#ffdede";
+box.style.color="#a00000";
 
 }
 
+}
 
-/* =================================================
-   START SYSTEM
-================================================= */
+
+/* ==========================
+START
+========================== */
 
 updateAll();
 
