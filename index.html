@@ -1,1 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>School Management System</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    color: #222;
+}
+
+header {
+    background: #174ea6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #174ea6;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background: #174ea6;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0d3b7d;
+}
+
+.student-info {
+    display: none;
+    background: #eef5ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media(max-width: 600px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    background: #174ea6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.stat h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.stat p {
+    margin-bottom: 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🏫 School Management System</h1>
+    <p>Admissions • Students • Parents • Fees • Performance</p>
+</header>
+
+<div class="container">
+
+    <!-- DASHBOARD -->
+    <div class="card">
+        <h2>📊 Dashboard</h2>
+
+        <div class="dashboard">
+            <div class="stat">
+                <h3 id="totalStudents">3</h3>
+                <p>Total Students</p>
+            </div>
+
+            <div class="stat">
+                <h3>2</h3>
+                <p>Boys</p>
+            </div>
+
+            <div class="stat">
+                <h3>1</h3>
+                <p>Girls</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- STUDENT SEARCH -->
+    <div class="card">
+        <h2>🔎 Search Student</h2>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Enter Admission Number"
+        >
+
+        <button onclick="searchStudent()">
+            Search Student
+        </button>
+
+        <div id="studentInfo" class="student-info"></div>
+    </div>
+
+    <!-- ADMISSION FORM -->
+    <div class="card">
+        <h2>📝 Student Admission</h2>
+
+        <div class="row">
+
+            <div>
+                <label>Admission Number</label>
+                <input type="text" id="admNo" placeholder="e.g. ADM001">
+            </div>
+
+            <div>
+                <label>Student Name</label>
+                <input type="text" id="studentName" placeholder="Student name">
+            </div>
+
+            <div>
+                <label>Class / Grade</label>
+                <select id="grade">
+                    <option value="">Select Grade</option>
+                    <option>Grade 4</option>
+                    <option>Grade 5</option>
+                    <option>Grade 6</option>
+                    <option>Grade 7</option>
+                    <option>Grade 8</option>
+                    <option>Grade 9</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+
+            <div>
+                <label>Birth Certificate No.</label>
+                <input type="text" id="birthCert" placeholder="Birth certificate number">
+            </div>
+
+        </div>
+
+        <button onclick="addStudent()">
+            ➕ Add Student
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+let students = [
+
+    {
+        admNo: "ADM001",
+        name: "John Kiptoo",
+        grade: "Grade 6",
+        gender: "Male",
+        dob: "2014-05-12",
+        birthCert: "SAMPLE001"
+    },
+
+    {
+        admNo: "ADM002",
+        name: "Mary Chebet",
+        grade: "Grade 5",
+        gender: "Female",
+        dob: "2015-08-20",
+        birthCert: "SAMPLE002"
+    },
+
+    {
+        admNo: "ADM003",
+        name: "Peter Langat",
+        grade: "Grade 4",
+        gender: "Male",
+        dob: "2016-02-10",
+        birthCert: "SAMPLE003"
+    }
+
+];
+
+function searchStudent() {
+
+    let search = document
+        .getElementById("searchInput")
+        .value
+        .trim()
+        .toUpperCase();
+
+    let student = students.find(
+        s => s.admNo.toUpperCase() === search
+    );
+
+    let info = document.getElementById("studentInfo");
+
+    if (!student) {
+
+        info.style.display = "block";
+
+        info.innerHTML =
+            "<strong>Student not found.</strong>";
+
+        return;
+    }
+
+    info.style.display = "block";
+
+    info.innerHTML = `
+        <h3>Student Details</h3>
+
+        <p><strong>Admission No:</strong>
+        ${student.admNo}</p>
+
+        <p><strong>Name:</strong>
+        ${student.name}</p>
+
+        <p><strong>Grade:</strong>
+        ${student.grade}</p>
+
+        <p><strong>Gender:</strong>
+        ${student.gender}</p>
+
+        <p><strong>Date of Birth:</strong>
+        ${student.dob}</p>
+
+        <p><strong>Birth Certificate No:</strong>
+        ${student.birthCert}</p>
+    `;
+}
+
+
+function addStudent() {
+
+    let admNo =
+        document.getElementById("admNo").value.trim();
+
+    let name =
+        document.getElementById("studentName").value.trim();
+
+    let grade =
+        document.getElementById("grade").value;
+
+    let gender =
+        document.getElementById("gender").value;
+
+    let dob =
+        document.getElementById("dob").value;
+
+    let birthCert =
+        document.getElementById("birthCert").value.trim();
+
+
+    if (!admNo || !name || !grade || !gender) {
+
+        alert("Please fill in the required information.");
+
+        return;
+    }
+
+
+    students.push({
+        admNo: admNo,
+        name: name,
+        grade: grade,
+        gender: gender,
+        dob: dob,
+        birthCert: birthCert
+    });
+
+
+    document.getElementById("totalStudents").innerText =
+        students.length;
+
+
+    alert("Student added successfully!");
+
+    document.getElementById("admNo").value = "";
+    document.getElementById("studentName").value = "";
+    document.getElementById("grade").value = "";
+    document.getElementById("gender").value = "";
+    document.getElementById("dob").value = "";
+    document.getElementById("birthCert").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
